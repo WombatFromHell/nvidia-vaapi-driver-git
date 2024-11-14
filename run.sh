@@ -22,7 +22,9 @@ rm -rf ./output/ &&
   mkdir -p output
 
 docker stop -i "$IMAGE_NAME"
+docker rm -f -i "$IMAGE_NAME"
+
 docker build -t "$IMAGE_NAME" .
-docker run --rm --replace \
+docker run --rm \
   -v "./output:/output${RELABEL}" \
   --name "$IMAGE_NAME" "$IMAGE_NAME"
